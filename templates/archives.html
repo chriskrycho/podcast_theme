@@ -8,7 +8,7 @@
     <ul class='article-list'>
     {% for article in articles_page.object_list %}
       {% set article_title = article.number ~ ": " ~ article.title %}
-      <li class='article-list__item'><a href="{{article.number}}/"><i class='fa fa-fw fa-play'></i>{{article_title}}</a> ({{article.locale_date}})</li>
+      <li class='article-list__item'><a href="/{{article.url}}"><i class='fa fa-fw fa-play'></i>{{article_title}}</a> ({{article.locale_date}})</li>
     {% endfor %}
     </ul>
     {% if articles_page.has_other_pages() %}

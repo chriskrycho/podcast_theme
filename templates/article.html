@@ -3,7 +3,17 @@
 {% set article_title = article.number ~ ": " ~ article.title %}
 
 {% block title %}
-   {{article_title}} – {{SITENAME}}
+{{article_title}} – {{SITENAME}}
+{% endblock %}
+
+{% block meta %}
+<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+<meta property="og:title" content="{{ article.title|striptags }}" />
+<meta property="og:description" content="{{ article.subtitle|striptags }}" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="{{LOGO}}" />
+<meta property="og:audio" content="{{ SITEURL }}/{{ article.m4a }}"/>
+<meta property="og:audio:type" content="audio/aac" />
 {% endblock %}
 
 {% block content %}
@@ -21,5 +31,3 @@
   </section>
 </article>
 {% endblock %}
-
-boom

@@ -6,6 +6,14 @@
     {{SITENAME}}
   {% endblock %}</title>
 
+  {% block meta %}
+  <meta property="og:url" content="{{ SITEURL }}" />
+  <meta property="og:title" content="{{ SITENAME }}" />
+  <meta property="og:description" content="{{ SITE_DESCRIPTION }}" />
+  <meta property="og:image" content="{{ LOGO }}" />
+  <meta property="og:type" content="website" />
+  {% endblock %}
+
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <link href="/favicon.png" type="image/png" rel="icon">
