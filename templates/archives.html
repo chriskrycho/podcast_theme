@@ -2,13 +2,30 @@
 
 {% block content %}
 <div class='archive'>
-  <h1 class='archive__title'>Runs (Episodes)</h1>
+  {% if category %}
+    {% if category.name == 'runs' %}
+      <h1 class='archive__title'>{{category.name | capitalize}}</h1>
+    {% else %}
+      <h1 class='archive__title'>{{category.name | upper}}</h1>
+    {%endif %}
+  {% else %}
+    <h1 class='archive__title'>All episodes</h1>
+  {% endif %}
+
 
   <div class='archive__body'>
     <ul class='article-list'>
     {% for article in articles_page.object_list %}
-      {% set article_title = article.number ~ ": " ~ article.title %}
-      <li class='article-list__item'><a href="/{{article.url}}"><i class='fa fa-fw fa-play'></i>{{article_title}}</a> ({{article.locale_date}})</li>
+      <li class='article-list__item'><a href="/{{article.url}}"><i class='fa fa-fw fa-play'></i>
+      {% if category %}
+        {# Don't include the category if *on* a category page. #}
+        {% set article_title = article.number ~ ": " ~ article.title %}
+        {{article_title}}
+      {% else %}
+        {% include 'helpers/article_title.html' %}
+      {% endif %}
+
+      </a> ({{article.locale_date}})</li>
     {% endfor %}
     </ul>
     {% if articles_page.has_other_pages() %}
